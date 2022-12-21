@@ -16,6 +16,7 @@ def solution(begin, target, words):
         w,cnt = q.popleft()
         if w == target:
             answer = cnt
+            break
         
         # 다른 단어 갯수 check
         for i in range(len(words)):
