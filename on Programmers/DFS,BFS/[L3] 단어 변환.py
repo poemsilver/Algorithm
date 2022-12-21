@@ -17,7 +17,7 @@ def solution(begin, target, words):
         if w == target:
             answer = cnt
         
-        #단어 하나만 다르면 q에 넣기
+        # 다른 단어 갯수 check
         for i in range(len(words)):
             dif = 0
             for j in range(len(w)):
@@ -25,6 +25,7 @@ def solution(begin, target, words):
                     break
                 if w[j] != words[i][j]:
                     dif += 1
+            # 단어가 하나만 다르고 방문한 적 없는 단어면,
             if dif == 1 and visit[words[i]] == 0:
                 visit[words[i]] = cnt+1
                 q.append([words[i],cnt+1])
