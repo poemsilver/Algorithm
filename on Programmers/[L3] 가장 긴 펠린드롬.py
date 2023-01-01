@@ -1,8 +1,6 @@
 # https://school.programmers.co.kr/learn/courses/30/lessons/12904#
 
-def solution(s):
-    answer = 0
-    
+def solution(s): 
     l = len(s)
     
     if len(s) == 1:
@@ -10,7 +8,6 @@ def solution(s):
     
     while l != 1:
         cnt = 1
-        
         for j in range(len(s)-l+1):
             cnt = 1
             for i in range(l//2):
