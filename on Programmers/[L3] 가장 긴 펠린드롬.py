@@ -4,7 +4,6 @@ def solution(s):
     l = len(s)
      
     while l != 1:
-        cnt = 1
         for j in range(len(s)-l+1):
             cnt = 1
             for i in range(l//2):
