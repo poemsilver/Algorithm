@@ -6,4 +6,4 @@ https://programmers.co.kr/learn/challenges
 2. 매 주 4문제 이상 풀고 커밋 로그 남기기(주 1회 이상 JAVA 풀이 올리기)
 3. 언어는 Python, JAVA
 4. 폴더의구조는 다음과 같다
-**Algorithm/코딩테스트 플랫폼명(ex.programmers)/알고리즘명/[레벨] 문제명.py**
+**Algorithm/on 코딩테스트 플랫폼명(ex. on programmers)/알고리즘명/[레벨] 문제명.py**
