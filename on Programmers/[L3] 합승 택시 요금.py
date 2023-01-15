@@ -1,57 +1,39 @@
-# 미완
 # https://school.programmers.co.kr/learn/courses/30/lessons/72413?language=python3
 
-from collections import defaultdict, deque
-from queue import PriorityQueue
+from collections import defaultdict,deque
 def solution(n, s, a, b, fares):
-    answer = 0
-    if n == 3:
-        return fares[0][2]+fares[1][2]+fares[2][2]
+    answer = n * 100001
+    M = n * 100001
+    # 최단거리 배열 return 다익스트라
+    # graph[시작] = [끝,거리]
+    def dij(start,graph):
+        dis = [M for _ in range(n+1)]
+        dis[start] = 0
+        q = deque()
+        q.append((start,0))
+        
+        while q:
+            now,cost = q.popleft()
+            
+            for next,c in graph[now]:
+                if c+cost < dis[next]:
+                    dis[next] = c+cost
+                    q.append((next,c+cost))
+        
+        return dis
     
     graph = defaultdict(list)
-    
     for i,j,c in fares:
-        graph[i].append((j,c))
-        graph[j].append((i,c))
-
-    costs = [100001*n for _ in range(n+1)]
-    costs[0] = 0
-    costs[s] = 0
+        graph[i].append([j,c])
+        graph[j].append([i,c])
     
-    q = deque()
-    q.append([s,0])
-    # S부터 각 지점까지 최단거리 구하기
-    while q:
-        now, c = q.popleft()
-        for i,co in graph[now]:
-            if costs[i] > c+co:
-                costs[i] = c+co
-                q.append([i,c+co])
+    dis1 = dij(s,graph)
     
-    # A지점부터 B지점까지 최단거리, 합승지점 구하기
-    atob = [100001*n for _ in range(n+1)]
-    atob[0] = 0
-    atob[a] = 0
-    q = deque()
-    q.append([a,0,[a]])
-    node = []
-    while q:
-        now,c,path = q.popleft()
+    # 완전탐색 : 최단거리를 가지는 i 지점 찾기
+    for i in range(n+1):
+        # i지점부터 모든 지점까지 최단경로 저장
+        dis2 = dij(i,graph)
+        if dis1[i]+dis2[a]+dis2[b] < answer:
+            answer = dis1[i]+dis2[a]+dis2[b]
         
-        if now == b:
-            node = path
-        
-        for i,co in graph[now]:
-            if atob[i] > c+co:
-                atob[i] = c+co
-                q.append([i,c+co,path+[i]])
-    
-    pq = PriorityQueue()
-    
-    for i in node:
-        pq.put((costs[i],i))
-    
-    mid = pq.get()
-    answer = atob[b] + mid[0]
-    
     return answer
