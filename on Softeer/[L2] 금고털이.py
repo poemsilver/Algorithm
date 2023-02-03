@@ -2,12 +2,12 @@
 import sys
 from heapq import heappush,heappop
 
-w,m = map(int,input().split(" "))
+w,m = map(int,sys.stdin.readline().split(" "))
 value = []
 answer = 0
 # m가지 보석의 무게당 가격 heapq에 넣기, 최대힙 구현
 for _ in range(m):
-    w2,c = map(int,input().split(" "))
+    w2,c = map(int,sys.stdin.readline().split(" "))
     heappush(value,(-c,w2))
 
 while value and w > 0:
