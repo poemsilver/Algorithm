@@ -16,7 +16,6 @@ def solution(tickets):
         nonlocal answer
         if answer != []:
             return answer
-        # 해당 start의 value 없음
         if len(path) == len(tickets)+1:
             # 경로 모두 포함했으면 answer에 넣기
             answer = path
